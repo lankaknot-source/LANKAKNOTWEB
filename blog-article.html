@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ dark: true, mm: false, sc: false }" @scroll.window="sc = (window.pageYOffset > 50)" :class="{'dark':dark}" class="scroll-smooth dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LANKAKNOT WEB SOLUTIONS - Blog Article">
+<title>The True Cost of Legacy Systems | LANKAKNOT WEB SOLUTIONS</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: { display: ['Outfit','sans-serif'], body: ['Inter','sans-serif'] },
+      colors: { 
+        primary: '#0ea5e9',
+        secondary: '#06b6d4',
+        darkbg: '#0f172a',
+        darkcard: '#1e293b'
+      }
+    }
+  }
+}
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{font-family:'Inter',sans-serif}
+h1,h2,h3,h4,h5,h6{font-family:'Outfit',sans-serif}
+body{transition:background-color .3s,color .3s; overflow-x: hidden;}
+
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#334155;border-radius:99px}
+.dark ::-webkit-scrollbar-thumb{background:#475569}
+
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.4,0,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+
+.glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+.glass-light { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(0, 0, 0, 0.05); }
+
+[x-cloak]{display:none!important}
+</style>
+</head>
+
+<body class="bg-slate-50 dark:bg-darkbg text-slate-900 dark:text-slate-100 antialiased selection:bg-primary/30">
+
+<!-- ═══ NAV ═══ -->
+<header class="fixed inset-x-0 top-0 z-50 transition-all duration-300 border-b border-transparent"
+  :class="sc?'glass-light dark:glass border-slate-200 dark:!border-white/10 shadow-sm':''">
+  <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 group relative z-10">
+      <img src="assets/images/logo.jpg" alt="LANKAKNOT" class="h-10 w-10 object-cover rounded-full border border-slate-200 dark:border-white/10">
+      <span class="font-display font-bold text-xl tracking-tight text-slate-900 dark:text-white hidden sm:block">LANKAKNOT<span class="text-primary font-medium"> WEB SOLUTIONS</span></span>
+    </a>
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <li><a href="index.html#services" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Expertise</a></li>
+      <li><a href="projects.html" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Projects</a></li>
+      <li><a href="index.html#about" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">About</a></li>
+      <li><a href="index.html#contact" class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Contact</a></li>
+    </ul>
+    <div class="flex items-center gap-4">
+      <button @click="dark=!dark" class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+        <svg x-show="!dark" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        <svg x-show="dark"  class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+      </button>
+      <button @click="mm=!mm" class="md:hidden w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+        <svg x-show="!mm" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg x-show="mm"  class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div x-show="mm" x-cloak
+    class="md:hidden absolute top-full left-0 w-full glass-light dark:glass border-b border-slate-200 dark:border-white/10 shadow-xl">
+    <ul class="flex flex-col px-6 py-6 gap-6 text-base font-medium">
+      <li><a href="index.html#services" class="block text-slate-700 dark:text-slate-300">Expertise</a></li>
+      <li><a href="projects.html" class="block text-slate-700 dark:text-slate-300">Projects</a></li>
+      <li><a href="index.html#about" class="block text-slate-700 dark:text-slate-300">About</a></li>
+      <li><a href="index.html#contact" class="block text-slate-700 dark:text-slate-300">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="relative z-10 pt-32 pb-24">
+  <article class="max-w-3xl mx-auto px-6">
+    
+    <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-primary mb-8 transition-colors">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back to Insights
+    </a>
+
+    <header class="mb-12">
+      <div class="flex items-center gap-3 mb-6 text-sm font-medium text-slate-500 dark:text-slate-400">
+        <span class="text-primary bg-primary/10 px-3 py-1.5 rounded-full">Architecture</span>
+        <span>May 12, 2026</span>
+        <span>· 5 min read</span>
+      </div>
+      <h1 class="reveal font-display font-bold text-4xl md:text-5xl text-slate-900 dark:text-white leading-tight mb-6">The True Cost of Legacy Systems: Why Migration Can't Wait</h1>
+      
+      <div class="reveal d1 flex items-center gap-4 mt-8 pt-8 border-t border-slate-200 dark:border-white/10">
+        <div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden">
+          <!-- Placeholder avatar -->
+          <svg class="w-full h-full text-slate-400" fill="currentColor" viewBox="0 0 24 24"><path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+        </div>
+        <div>
+          <p class="font-bold text-slate-900 dark:text-white">Engineering Team</p>
+          <p class="text-sm text-slate-500">LANKAKNOT WEB SOLUTIONS</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="reveal d2 w-full aspect-[21/9] rounded-3xl overflow-hidden mb-12 shadow-xl border border-slate-200 dark:border-white/10">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80" alt="Legacy Code" class="w-full h-full object-cover">
+    </div>
+
+    <div class="prose prose-lg dark:prose-invert prose-slate max-w-none prose-headings:font-display prose-headings:font-bold prose-a:text-primary">
+      <p>
+        In today's rapidly evolving digital landscape, clinging to legacy software systems is no longer just a minor inconvenience—it's a critical business risk. Many enterprises continue to operate on outdated architecture, citing the high cost of migration and the "if it ain't broke, don't fix it" mentality. However, the hidden costs of maintaining these systems far outweigh the initial investment required for modernization.
+      </p>
+
+      <h2>The Hidden Maintenance Burden</h2>
+      <p>
+        The most immediate cost of a legacy system is maintenance. Older codebases are notoriously fragile. As the original developers move on, new engineers are left to navigate undocumented, monolithic structures. This leads to a situation where adding a simple feature takes weeks instead of days, driving up engineering costs and stalling innovation.
+      </p>
+      
+      <blockquote>
+        "Every dollar spent maintaining a legacy system is a dollar taken away from innovation and growth."
+      </blockquote>
+
+      <h2>Security Vulnerabilities</h2>
+      <p>
+        Security is perhaps the most pressing reason to upgrade. Legacy systems were often built before modern security protocols became standard. They frequently rely on unsupported frameworks or libraries that no longer receive security patches, leaving the entire enterprise vulnerable to cyberattacks. A single data breach can cost millions in damages and irrevocably harm a brand's reputation.
+      </p>
+
+      <h2>Integration Bottlenecks</h2>
+      <p>
+        Modern business relies on data fluidity. Cloud services, AI tools, and third-party APIs need to communicate seamlessly. Legacy systems, often locked in on-premise silos, make integrations incredibly difficult. Businesses find themselves writing complex, brittle middleware just to keep basic operations running, rather than leveraging modern APIs to unlock new capabilities.
+      </p>
+
+      <h2>The Path Forward: Strategic Modernization</h2>
+      <p>
+        At LANKAKNOT WEB SOLUTIONS, we don't believe in "rip and replace" unless absolutely necessary. We advocate for strategic modernization—incrementally decoupling monolithic architectures into agile microservices. This approach minimizes downtime and allows businesses to see immediate ROI as critical components are upgraded to the cloud.
+      </p>
+      
+      <p>
+        It's time to stop paying the legacy tax. Modernizing your software architecture is an investment in your company's agility, security, and future growth.
+      </p>
+    </div>
+
+  </article>
+</main>
+
+<footer class="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-darkbg pt-10 pb-10">
+  <div class="max-w-7xl mx-auto px-6 text-center text-sm text-slate-500 dark:text-slate-400">
+    <p>© <span x-text="new Date().getFullYear()"></span> LANKAKNOT WEB SOLUTIONS. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
+</script>
+</body>
+</html>
